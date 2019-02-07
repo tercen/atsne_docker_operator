@@ -19,11 +19,13 @@ WORKDIR /operator
 RUN git clone https://github.com/tercen/atsne_operator.git
 
 WORKDIR /operator/atsne_operator
+
+RUN git checkout 1.0.2
   
 RUN R --no-init-file --no-save --no-restore --no-environ --slave -f packrat/init.R --args --bootstrap-packrat
 
-ENTRYPOINT [ "R","--no-init-file","--no-save","--no-restore","--no-environ","--slave","-f","main.R", "--args"]
-CMD [ "--taskId", "someid", "--serviceUri", "https://tercen.com", "--slaveUri", "http://127.0.0.1:5500", "--token", "sometoken"]
+ENTRYPOINT [ "R","--no-save","--no-restore","--no-environ","--slave","-f","main.R", "--args"]
+CMD [ "--taskId", "someid", "--serviceUri", "https://tercen.com", "--token", "sometoken"]
 
 
 
