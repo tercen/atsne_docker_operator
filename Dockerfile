@@ -20,8 +20,8 @@ RUN git clone https://github.com/tercen/atsne_operator.git
 
 WORKDIR /operator/atsne_operator
 
-RUN git pull
-RUN git checkout 1.1.0
+RUN echo 1 && git pull
+RUN git checkout 1.1.1
   
 RUN R --no-init-file --no-save --no-restore --no-environ --slave -f packrat/init.R --args --bootstrap-packrat
 
