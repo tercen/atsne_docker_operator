@@ -4,7 +4,7 @@
   "tags": ["multivariate statistics"],
   "authors": ["tercen"],
   "urls": ["https://github.com/tercen/atsne_docker_operator"],
-  "container": "tercen/atsne:1.0.2",
+  "container": "tercen/atsne:1.1.0",
   "properties": [  {
     "kind": "DoubleProperty",
     "name": "dims",
@@ -30,6 +30,11 @@
     "name": "perplexity",
     "defaultValue": 30,
     "description": "Perplexity parameter"
+  },{
+    "kind": "DoubleProperty",
+    "name": "fill",
+    "defaultValue": 0.0,
+    "description": "Missing value"
   }
   ]
 }
