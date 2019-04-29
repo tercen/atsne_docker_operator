@@ -1,4 +1,4 @@
-FROM tercen/tercen_base:1.0.10
+FROM tercen/tercen_base:1.0.11
 
 RUN git clone https://github.com/tercen/High-Dimensional-Inspector.git
 RUN cd High-Dimensional-Inspector && \
@@ -20,8 +20,8 @@ RUN git clone https://github.com/tercen/atsne_operator.git
 
 WORKDIR /operator/atsne_operator
 
-RUN echo 1 && git pull
-RUN git checkout 1.1.1
+RUN echo 1.1.3 && git pull
+RUN git checkout 1.1.3
   
 RUN R --no-init-file --no-save --no-restore --no-environ --slave -f packrat/init.R --args --bootstrap-packrat
 
