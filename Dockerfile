@@ -20,8 +20,8 @@ RUN git clone https://github.com/tercen/atsne_operator.git
 
 WORKDIR /operator/atsne_operator
 
-RUN echo 1.1.8.0 && git pull
-RUN git checkout 1.1.8
+RUN echo 1.1.9.0 && git pull
+RUN git checkout 1.1.9
 
 RUN mkdir ~/.R && \
     echo "SHLIB_CXXLDFLAGS = -Wl,-S -shared" >> ~/.R/Makevars && \
