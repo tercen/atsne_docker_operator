@@ -1,4 +1,4 @@
-FROM tercen/tercen_base:1.0.11
+FROM tercen/dartrusttidy:1.0.1
 
 RUN git clone https://github.com/tercen/High-Dimensional-Inspector.git
 RUN cd High-Dimensional-Inspector && \
@@ -20,8 +20,8 @@ RUN git clone https://github.com/tercen/atsne_operator.git
 
 WORKDIR /operator/atsne_operator
 
-RUN echo 1.1.10.0 && git pull
-RUN git checkout 1.1.10
+RUN echo 1.1.11.0 && git pull
+RUN git checkout 1.1.11
 
 RUN mkdir ~/.R && \
     echo "SHLIB_CXXLDFLAGS = -Wl,-S -shared" >> ~/.R/Makevars && \
@@ -31,10 +31,11 @@ RUN mkdir ~/.R && \
     echo "SHLIB_LDFLAGS = -Wl,-S -shared" >> ~/.R/Makevars && \
     cat ~/.R/Makevars
 
-RUN R --no-init-file --no-save --no-restore --no-environ --slave -f packrat/init.R --args --bootstrap-packrat && \
-    rm -rf /root/.config/packrat/v2/library/BH/* && \
-    strip --strip-debug /root/.config/packrat/v2/library/*/*/*/libs/*.so && \
-    rm -rf /tmp/* /var/tmp/* /usr/local/cargo/registry/* /usr/local/cargo/git/*
+RUN R -e "renv::restore(confirm=FALSE)"
+
+RUN rm -rf /tmp/* /var/tmp/* /usr/local/cargo/registry/* /usr/local/cargo/git/* && \
+    rm -rf /root/.local/share/renv/cache/v4/R-3.5/x86_64-pc-linux-gnu/BH/* && \
+    strip --strip-debug /root/.local/share/renv/cache/*/*/*/*/*/*/*/libs/*.so
 
 ENTRYPOINT [ "R","--no-save","--no-restore","--no-environ","--slave","-f","main.R", "--args"]
 CMD [ "--taskId", "someid", "--serviceUri", "https://tercen.com", "--token", "sometoken"]
