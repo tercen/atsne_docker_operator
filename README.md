@@ -1,9 +1,12 @@
-# ATSNE
+# Approximated t-SNE
+
+##### Description
 
 ```
 https://github.com/tercen/atsne_docker_operator.git
 ```
-## Build
+
+##### Build
 
 ```bash
 VERSION=1.1.11
